@@ -6,21 +6,12 @@ on:
 jobs:
   hello1:
     runs-on: ubuntu-latest
-    outputs:
-      username: ${{ steps.set_var.outputs.username }}
-    steps:
-      - name: sayHi
-        run: echo "Hi"
-      - name: Wait for 3 seconds
-        run: sleep 3
-      - name: Set username
-        id: set_var
-        run: echo "username=${{ github.actor }}" >> $GITHUB_ENV
-  hello2:
-    needs: [hello1]
-    runs-on: ubuntu-latest
     steps:
       - name: sayHi
         run: echo "Hi"
       - name: sayMyName
-        run: echo "Username from hello1 is ${{ needs.hello1.outputs.username }}"
+        run: echo "${{ github.actor }}"
+      - uses: actions/checkout@v4   
+      - uses: mathieudutour/github-tag-action@v6.1 
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
