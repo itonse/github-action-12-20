@@ -50,7 +50,7 @@ jobs:
           echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
         env:
           OWNER: "${{ github.repository_owner }}"
-        - name: no.html 생성
+      - name: no.html 생성
         env:
           ACTIONS_STEP_DEBUG: true
           NO_HTML: ${{ secrets.NO_HTML }}
